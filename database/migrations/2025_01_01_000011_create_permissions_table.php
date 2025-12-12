@@ -35,6 +35,17 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // Drop foreign keys first
+        Schema::table('permissions', function (Blueprint $table) {
+            $table->dropForeign(['role_id']);
+            $table->dropForeign(['collection_id']);
+            $table->dropForeign(['field_group_id']);
+
+            $table->dropIndex(['role_id']);
+            $table->dropIndex(['collection_id']);
+            $table->dropIndex(['field_group_id']);
+        });
+
         Schema::dropIfExists('permissions');
     }
 };

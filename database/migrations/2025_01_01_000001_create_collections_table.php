@@ -54,6 +54,13 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('collections', function (Blueprint $table) {
+            $table->dropForeign(['created_by']);
+            $table->dropForeign(['updated_by']);
+
+            $table->dropIndex(['is_active']);
+        });
+
         Schema::dropIfExists('collections');
     }
 };

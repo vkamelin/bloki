@@ -47,6 +47,15 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('fields', function (Blueprint $table) {
+            $table->dropForeign('group_id');
+            $table->dropForeign('created_by');
+            $table->dropForeign('updated_by');
+
+            $table->dropIndex(['group_id']);
+            $table->dropIndex(['type']);
+        });
+
         Schema::dropIfExists('fields');
     }
 };

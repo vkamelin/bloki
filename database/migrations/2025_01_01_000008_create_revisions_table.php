@@ -36,6 +36,14 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('revisions', function (Blueprint $table) {
+            $table->dropForeign('created_by');
+
+            $table->dropIndex(['entity_type', 'entity_id']);
+            $table->dropIndex('created_by');
+            $table->dropIndex('timestamp');
+        });
+
         Schema::dropIfExists('revisions');
     }
 };

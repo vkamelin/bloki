@@ -24,6 +24,8 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->index(['is_active']);
+
             $table->foreign('created_by')->references('id')->on('admins')->onDelete('set null');
             $table->foreign('updated_by')->references('id')->on('admins')->onDelete('set null');
         });
@@ -34,6 +36,13 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('field_groups', function (Blueprint $table) {
+            $table->dropForeign('created_by');
+            $table->dropForeign('updated_by');
+
+            $table->dropIndex(['is_active']);
+        });
+
         Schema::dropIfExists('field_groups');
     }
 };

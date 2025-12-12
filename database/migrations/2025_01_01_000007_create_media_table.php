@@ -42,6 +42,14 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('media', function (Blueprint $table) {
+            $table->dropForeign('created_by');
+            $table->dropForeign('updated_by');
+
+            $table->dropIndex('uuid');
+            $table->dropIndex('mime_type');
+        });
+
         Schema::dropIfExists('media');
     }
 };

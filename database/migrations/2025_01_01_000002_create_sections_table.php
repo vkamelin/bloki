@@ -52,6 +52,21 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('sections', function (Blueprint $table) {
+            $table->dropForeign(['collection_id']);
+            $table->dropForeign(['parent_id']);
+            $table->dropForeign(['created_by']);
+            $table->dropForeign(['updated_by']);
+
+            $table->dropIndex(['collection_id']);
+            $table->dropIndex(['parent_id']);
+            $table->dropIndex(['lft']);
+            $table->dropIndex(['rgt']);
+            $table->dropIndex(['slug']);
+            $table->dropIndex(['created_by']);
+            $table->dropIndex(['updated_by']);
+        });
+
         Schema::dropIfExists('sections');
     }
 };
