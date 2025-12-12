@@ -23,7 +23,6 @@ return new class extends Migration
             $table->boolean('has_sections')->default(true);
             $table->enum('section_structure', ['tree', 'single'])->default('tree');
             $table->json('entry_behavior')->nullable();
-            +
             $table->boolean('is_singleton')->default(false);
             $table->boolean('full_text_search')->default(false);
 
