@@ -17,9 +17,13 @@ return new class extends Migration
             $table->string('email', 320)->unique();
             $table->string('password', 255);
             $table->rememberToken();
+            $table->unsignedBigInteger('role_id')->nullable();
             $table->boolean('is_active')->default(false);
             $table->timestamps();
             $table->softDeletes();
+
+            // Foreign keys
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('set null');
         });
     }
 

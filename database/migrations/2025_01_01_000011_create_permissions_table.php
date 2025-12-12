@@ -17,13 +17,14 @@ return new class extends Migration
             $table->unsignedBigInteger('collection_id')->nullable();
             $table->unsignedBigInteger('field_group_id')->nullable();
             $table->enum('action', ['read', 'write', 'delete']);
-            
+
             // Indexes
             $table->index('role_id');
             $table->index('collection_id');
             $table->index('field_group_id');
-            
+
             // Foreign keys
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->foreign('collection_id')->references('id')->on('collections')->onDelete('cascade');
             $table->foreign('field_group_id')->references('id')->on('field_groups')->onDelete('cascade');
         });
