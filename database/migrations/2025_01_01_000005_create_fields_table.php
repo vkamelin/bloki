@@ -1,0 +1,51 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('fields', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('group_id');
+            $table->string('handle');
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->text('instructions')->nullable();
+            $table->string('type');
+            $table->json('settings')->nullable();
+            $table->boolean('required')->default(false);
+            $table->json('validation_rules')->nullable();
+            $table->boolean('list_visibility')->default(true);
+            $table->boolean('translatable')->default(false);
+            $table->boolean('searchable')->default(false);
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->timestamps();
+
+            // Indexes
+            $table->index('group_id');
+            $table->index('handle');
+            $table->index('type');
+
+            // Foreign keys
+            $table->foreign('group_id')->references('id')->on('field_groups')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('admins')->onDelete('set null');
+            $table->foreign('updated_by')->references('id')->on('admins')->onDelete('set null');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('fields');
+    }
+};
