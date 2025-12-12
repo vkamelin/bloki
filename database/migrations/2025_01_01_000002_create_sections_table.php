@@ -18,10 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedInteger('lft')->default(0);
             $table->unsignedInteger('rgt')->default(0);
-            $table->string('handle');
-            $table->string('slug');
-            $table->string('name');
-            $table->string('title')->nullable();
+            $table->string('slug', 100);
+            $table->string('name', 100);
+            $table->string('title', 200)->nullable();
             $table->text('description')->nullable();
             $table->enum('status', ['published', 'hidden', 'archived'])->default('published');
             $table->json('meta')->nullable();

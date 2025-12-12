@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->string('handle')->unique();
-            $table->string('name');
-            $table->string('slug');
+            $table->uuid();
+            $table->string('name', 100);
+            $table->string('slug', 100)->unique();
             $table->text('description')->nullable();
             $table->string('icon')->nullable();
 
@@ -27,8 +27,8 @@ return new class extends Migration
             $table->boolean('full_text_search')->default(false);
 
             // Views JSON
-            $table->string('default_template_section')->nullable();
-            $table->string('default_template_entry')->nullable();
+            $table->string('default_template_section', 100)->nullable();
+            $table->string('default_template_entry', 100)->nullable();
             $table->json('route_patterns')->nullable();
             $table->json('api_visibility')->nullable();
 
@@ -38,6 +38,13 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->timestamps();
+
+            // Indexes
+            $table->index('is_active');
+
+            // Foreign keys
+            $table->foreign('created_by')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('admins')->onDelete('cascade');
         });
     }
 

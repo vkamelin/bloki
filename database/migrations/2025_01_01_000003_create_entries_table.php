@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->uuid();
             $table->unsignedBigInteger('collection_id');
-            $table->string('handle');
-            $table->string('slug');
-            $table->string('name');
-            $table->string('title')->nullable();
+            $table->string('slug', 100);
+            $table->string('name', 100);
+            $table->string('title', 200)->nullable();
             $table->enum('status', ['draft', 'published', 'review', 'archived'])->default('draft');
             $table->timestamp('published_at')->nullable();
             $table->json('meta')->nullable();

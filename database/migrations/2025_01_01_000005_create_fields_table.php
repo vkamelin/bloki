@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('fields', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('group_id');
-            $table->string('handle');
-            $table->string('name');
+            $table->uuid();
+            $table->string('name', 100);
             $table->text('description')->nullable();
             $table->text('instructions')->nullable();
-            $table->string('type');
+            $table->string('type', 50);
             $table->json('settings')->nullable();
             $table->boolean('required')->default(false);
             $table->json('validation_rules')->nullable();
@@ -33,7 +33,6 @@ return new class extends Migration
 
             // Indexes
             $table->index('group_id');
-            $table->index('handle');
             $table->index('type');
 
             // Foreign keys

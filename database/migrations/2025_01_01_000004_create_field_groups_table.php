@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('field_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('handle')->unique();
-            $table->string('name');
+            $table->uuid();
+            $table->string('name', 100);
             $table->text('description')->nullable();
             $table->boolean('is_global')->default(false);
             $table->json('rules')->nullable();
