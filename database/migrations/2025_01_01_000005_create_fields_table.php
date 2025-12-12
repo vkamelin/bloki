@@ -25,9 +25,11 @@ return new class extends Migration
             $table->boolean('list_visibility')->default(true);
             $table->boolean('translatable')->default(false);
             $table->boolean('searchable')->default(false);
+            $table->boolean('is_active')->default(false);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             // Indexes
             $table->index('group_id');

@@ -26,13 +26,15 @@ return new class extends Migration
             $table->date('value_date')->nullable();
             $table->dateTime('value_datetime')->nullable();
             $table->string('locale', 10)->nullable();
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
-            
+            $table->softDeletes();
+
             // Indexes
             $table->index(['entity_type', 'entity_id']);
             $table->index('field_id');
             $table->index('locale');
-            
+
             // Foreign keys
             $table->foreign('field_id')->references('id')->on('fields')->onDelete('cascade');
         });

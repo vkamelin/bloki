@@ -22,9 +22,11 @@ return new class extends Migration
             $table->enum('status', ['draft', 'published', 'review', 'archived'])->default('draft');
             $table->timestamp('published_at')->nullable();
             $table->json('meta')->nullable();
+            $table->boolean('is_active')->default(false);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             // Indexes
             $table->index('collection_id');

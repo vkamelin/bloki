@@ -21,9 +21,11 @@ return new class extends Migration
             $table->string('alt_text')->nullable();
             $table->string('caption')->nullable();
             $table->json('transforms')->nullable();
+            $table->boolean('is_active')->default(false);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             // Indexes
             $table->index('uuid');

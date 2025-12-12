@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamp('timestamp');
             $table->string('note')->nullable();
+            $table->softDeletes();
 
             // Indexes
             $table->index(['entity_type', 'entity_id']);

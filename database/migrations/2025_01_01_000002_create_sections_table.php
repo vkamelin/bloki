@@ -25,9 +25,11 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->enum('status', ['published', 'hidden', 'archived'])->default('published');
             $table->json('meta')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             // Indexes
             $table->index('collection_id');
