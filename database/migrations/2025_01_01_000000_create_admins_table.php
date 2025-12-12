@@ -21,9 +21,6 @@ return new class extends Migration
             $table->boolean('is_active')->default(false);
             $table->timestamps();
             $table->softDeletes();
-
-            // Foreign keys
-            $table->foreign('role_id')->references('id')->on('roles')->onDelete('set null');
         });
     }
 
@@ -32,10 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('admins', function (Blueprint $table) {
-            $table->dropForeign(['role_id']);
-        });
-
         Schema::dropIfExists('admins');
     }
 };
