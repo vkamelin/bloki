@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Collection as BaseCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -69,9 +69,39 @@ class Section extends Model
     /**
      * Получение дочерних разделов
      */
-    public function getChildren(): Collection
+    public function getChildren(): BaseCollection
     {
         return $this->children()->get();
+    }
+
+    public function getParent(): ?Section
+    {
+        return $this->parent()->first();
+    }
+
+    public function getCollection(): Collection
+    {
+        return $this->collection()->first();
+    }
+
+    public function isActive(): bool
+    {
+        return ($this->is_active ?? false);
+    }
+
+    public function isPublished(): bool
+    {
+        return $this->attributes['status'] === 'published';
+    }
+
+    public function isHidden(): bool
+    {
+        return $this->attributes['status'] === 'hidden';
+    }
+
+    public function isArchived(): bool
+    {
+        return $this->attributes['status'] === 'archived';
     }
 
     protected function casts(): array
