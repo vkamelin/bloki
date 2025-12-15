@@ -19,14 +19,12 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('icon')->nullable();
 
-            // Settings JSON
             $table->boolean('has_sections')->default(true);
             $table->enum('section_structure', ['tree', 'single'])->default('tree');
             $table->json('entry_behavior')->nullable();
             $table->boolean('is_singleton')->default(false);
             $table->boolean('full_text_search')->default(false);
 
-            // Views JSON
             $table->string('default_template_section', 100)->nullable();
             $table->string('default_template_entry', 100)->nullable();
             $table->json('route_patterns')->nullable();
