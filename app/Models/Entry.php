@@ -40,6 +40,56 @@ class Entry extends Model
         return $this->belongsTo(Admin::class, 'updated_by');
     }
 
+    public function getMetaAttribute(): array
+    {
+        return json_decode($this->attributes['meta'], true);
+    }
+
+    public function setMetaAttribute($value): void
+    {
+        $this->attributes['meta'] = json_encode($value, JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getCollection(): Collection
+    {
+        return $this->collection()->first();
+    }
+
+    public function isActive(): bool
+    {
+        return ($this->is_active ?? false);
+    }
+
+    public function isDraft(): bool
+    {
+        return $this->attributes['status'] === 'draft';
+    }
+
+    public function isPublished(): bool
+    {
+        return $this->attributes['status'] === 'published';
+    }
+
+    public function isReview(): bool
+    {
+        return $this->attributes['status'] === 'review';
+    }
+
+    public function isArchived(): bool
+    {
+        return $this->attributes['status'] === 'archived';
+    }
+
+    public function getFieldValue(string $fieldHandle)
+    {
+        // TODO: Получение значения поля $fieldHandle для текущей записи
+    }
+
+    public function setFieldValue(string $fieldHandle, $value)
+    {
+        // TODO: Запись значения $value поля $fieldHandle для текущей записи
+    }
+
     protected function casts(): array
     {
         return [
