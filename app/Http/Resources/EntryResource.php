@@ -25,11 +25,11 @@ class EntryResource extends JsonResource
             'updated_at' => $this->updated_at,
 
             'collection_id' => $this->collection_id,
-            'cteated_by' => $this->cteated_by,
+            'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
 
             'collection' => new CollectionResource($this->whenLoaded('collection')),
-            'cteatedBy' => new AdminResource($this->whenLoaded('cteatedBy')),
+            'createdBy' => new AdminResource($this->whenLoaded('createdBy')),
             'updatedBy' => new AdminResource($this->whenLoaded('updatedBy')),
         ];
     }

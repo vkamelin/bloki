@@ -18,7 +18,7 @@ class EntryRequest extends FormRequest
             'published_at' => ['nullable', 'date'],
             'meta' => ['nullable'],
             'is_active' => ['boolean'],
-            'cteated_by' => ['required', 'exists:admins'],
+            'created_by' => ['required', 'exists:admins'],
             'updated_by' => ['required', 'exists:admins'],
         ];
     }

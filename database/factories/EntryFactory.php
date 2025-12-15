@@ -28,7 +28,7 @@ class EntryFactory extends Factory
             'updated_at' => Carbon::now(),
 
             'collection_id' => Collection::factory(),
-            'cteated_by' => Admin::factory(),
+            'created_by' => Admin::factory(),
             'updated_by' => Admin::factory(),
         ];
     }

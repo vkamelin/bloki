@@ -21,7 +21,7 @@ class Entry extends Model
         'published_at',
         'meta',
         'is_active',
-        'cteated_by',
+        'created_by',
         'updated_by',
     ];
 
@@ -30,9 +30,9 @@ class Entry extends Model
         return $this->belongsTo(Collection::class);
     }
 
-    public function cteatedBy(): BelongsTo
+    public function createdBy(): BelongsTo
     {
-        return $this->belongsTo(Admin::class, 'cteated_by');
+        return $this->belongsTo(Admin::class, 'created_by');
     }
 
     public function updatedBy(): BelongsTo
