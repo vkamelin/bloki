@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Resources;
+
+use App\Models\FieldGroup;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+/** @mixin FieldGroup */
+class FieldGroupResource extends JsonResource
+{
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'uuid' => $this->uuid,
+            'name' => $this->name,
+            'description' => $this->description,
+            'is_global' => $this->is_global,
+            'rules' => $this->rules,
+            'is_active' => $this->is_active,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+
+            'created_by' => $this->created_by,
+            'updated_by' => $this->updated_by,
+
+            'createdBy' => new AdminResource($this->whenLoaded('createdBy')),
+            'updatedBy' => new AdminResource($this->whenLoaded('updatedBy')),
+        ];
+    }
+}
