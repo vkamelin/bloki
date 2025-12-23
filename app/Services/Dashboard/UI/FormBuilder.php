@@ -2,12 +2,20 @@
 
 namespace App\Services\Dashboard\UI;
 
+use App\Services\Dashboard\FieldConfiguration;
+
 class FormBuilder
 {
     protected $fields = [];
     protected $action = '';
     protected $method = 'POST';
     protected $model = null;
+    protected $fieldConfig;
+
+    public function __construct()
+    {
+        $this->fieldConfig = new FieldConfiguration();
+    }
 
     public function setAction($action)
     {
@@ -61,6 +69,10 @@ class FormBuilder
                 case 'text':
                 case 'email':
                 case 'password':
+                case 'number':
+                case 'url':
+                case 'date':
+                case 'datetime-local':
                     $html .= '<input type="' . $field['type'] . '" class="form-control" id="' . $name . '" name="' . $name . '" value="' . $value . '">';
                     break;
                     
@@ -75,6 +87,33 @@ class FormBuilder
                         $html .= '<option value="' . $key . '" ' . $selected . '>' . $choice . '</option>';
                     }
                     $html .= '</select>';
+                    break;
+                    
+                case 'checkbox':
+                case 'boolean':
+                    $checked = $value ? 'checked' : '';
+                    $html .= '<input type="checkbox" class="form-check-input" id="' . $name . '" name="' . $name . '" value="1" ' . $checked . '>';
+                    break;
+                    
+                case 'richtext':
+                    $html .= '<textarea class="form-control richtext" id="' . $name . '" name="' . $name . '">' . $value . '</textarea>';
+                    break;
+                    
+                case 'file':
+                case 'image':
+                    $html .= '<input type="file" class="form-control" id="' . $name . '" name="' . $name . '">';
+                    break;
+                    
+                default:
+                    // Use the field type configuration to determine the input type
+                    $fieldTypeConfig = $this->fieldConfig->getFieldType($field['type']);
+                    if ($fieldTypeConfig && isset($fieldTypeConfig['admin_ui']['input_type'])) {
+                        $inputType = $fieldTypeConfig['admin_ui']['input_type'];
+                        $html .= '<input type="' . $inputType . '" class="form-control" id="' . $name . '" name="' . $name . '" value="' . $value . '">';
+                    } else {
+                        // Default to text input
+                        $html .= '<input type="text" class="form-control" id="' . $name . '" name="' . $name . '" value="' . $value . '">';
+                    }
                     break;
             }
             
