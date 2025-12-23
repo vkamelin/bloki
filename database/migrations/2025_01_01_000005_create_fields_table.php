@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->text('description')->nullable();
             $table->text('instructions')->nullable();
-            $table->string('type', 50);
+            $table->string('type', 50); // Field types are loaded from configuration, not hardcoded
             $table->json('settings')->nullable();
             $table->boolean('required')->default(false);
             $table->json('validation_rules')->nullable();

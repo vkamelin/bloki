@@ -16,15 +16,22 @@ return new class extends Migration
             $table->unsignedBigInteger('field_id');
             $table->string('entity_type');
             $table->unsignedBigInteger('entity_id');
-            $table->enum('value_type', ['string', 'text', 'integer', 'float', 'boolean', 'json', 'date', 'datetime']);
+            $table->string('value_type', 50); // Value types are determined by field configuration
             $table->string('value_string', 255)->nullable();
             $table->text('value_text')->nullable();
             $table->integer('value_int')->nullable();
+            $table->bigInteger('value_bigint')->nullable();
             $table->float('value_float')->nullable();
+            $table->double('value_double')->nullable();
+            $table->decimal('value_decimal', 15, 8)->nullable();
             $table->boolean('value_bool')->nullable();
             $table->json('value_json')->nullable();
             $table->date('value_date')->nullable();
-            $table->dateTime('value_datetime')->nullable();
+            $table->dateTimeTz('value_datetime')->nullable();
+            $table->year('year')->nullable();
+            $table->time('value_time')->nullable();
+            $table->timestamp('value_timestamp')->nullable();
+            $table->geography('geography')->nullable();
             $table->string('locale', 10)->nullable();
             $table->boolean('is_active')->default(false);
             $table->timestamps();
