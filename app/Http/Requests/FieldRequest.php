@@ -3,9 +3,18 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Services\Dashboard\FieldConfiguration;
 
 class FieldRequest extends FormRequest
 {
+    protected $fieldConfig;
+    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->fieldConfig = new FieldConfiguration();
+    }
+
     public function rules(): array
     {
         return [
@@ -14,7 +23,7 @@ class FieldRequest extends FormRequest
             'name' => ['required'],
             'description' => ['nullable'],
             'instructions' => ['nullable'],
-            'type' => ['required'],
+            'type' => ['required', 'in:' . implode(',', $this->fieldConfig->getFieldTypeNames())],
             'settings' => ['nullable'],
             'required' => ['boolean'],
             'validation_rules' => ['nullable'],

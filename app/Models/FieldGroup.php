@@ -43,14 +43,14 @@ class FieldGroup extends Model
         return json_decode($this->attributes['rules'], true);
     }
 
-    public function setRulesAttribute(): void
+    public function setRulesAttribute($value): void
     {
-        $this->attributes['rules'] = json_encode(json_decode($this->attributes['rules'], true));
+        $this->attributes['rules'] = json_encode($value);
     }
 
     public function getFields(): \Illuminate\Support\Collection
     {
-        return $this->fileds->get();
+        return $this->fields->get();
     }
 
     public function isGlobal(): bool

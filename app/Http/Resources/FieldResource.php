@@ -18,6 +18,7 @@ class FieldResource extends JsonResource
             'description' => $this->description,
             'instructions' => $this->instructions,
             'type' => $this->type,
+            'type_config' => $this->type_config ?? null,
             'settings' => $this->settings,
             'required' => $this->required,
             'validation_rules' => $this->validation_rules,

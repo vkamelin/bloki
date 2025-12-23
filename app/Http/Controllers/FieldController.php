@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FieldRequest;
 use App\Http\Resources\FieldResource;
 use App\Models\Field;
+use App\Services\Dashboard\FieldConfiguration;
+use Illuminate\Http\Request;
 
 class FieldController extends Controller
 {
+    protected $fieldConfig;
+    
+    public function __construct()
+    {
+        $this->fieldConfig = new FieldConfiguration();
+    }
+
     public function index()
     {
         $this->authorize('viewAny', Field::class);
@@ -19,13 +28,23 @@ class FieldController extends Controller
     {
         $this->authorize('create', Field::class);
 
-        return new FieldResource(Field::create($request->validated()));
+        $field = Field::create($request->validated());
+        
+        // Add field type configuration to the response
+        $field->load('group');
+        $field->type_config = $this->fieldConfig->getFieldType($field->type);
+        
+        return new FieldResource($field);
     }
 
     public function show(Field $field)
     {
         $this->authorize('view', $field);
 
+        // Add field type configuration to the response
+        $field->load('group');
+        $field->type_config = $this->fieldConfig->getFieldType($field->type);
+        
         return new FieldResource($field);
     }
 
@@ -34,6 +53,10 @@ class FieldController extends Controller
         $this->authorize('update', $field);
 
         $field->update($request->validated());
+        
+        // Add field type configuration to the response
+        $field->load('group');
+        $field->type_config = $this->fieldConfig->getFieldType($field->type);
 
         return new FieldResource($field);
     }
@@ -45,5 +68,10 @@ class FieldController extends Controller
         $field->delete();
 
         return response()->json();
+    }
+    
+    public function getFieldTypes()
+    {
+        return response()->json($this->fieldConfig->getFieldTypes());
     }
 }

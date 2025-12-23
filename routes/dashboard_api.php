@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\Api\UsersApiController;
 use App\Http\Controllers\Dashboard\Api\ArticlesApiController;
 use App\Http\Controllers\Dashboard\Api\CollectionsApiController;
 use App\Http\Controllers\Dashboard\Api\EntriesApiController;
+use App\Http\Controllers\Dashboard\Api\FieldsApiController;
 
 Route::middleware(['auth:dashboard'])->group(function () {
     Route::prefix('api')->group(function () {
@@ -27,5 +28,12 @@ Route::middleware(['auth:dashboard'])->group(function () {
         Route::post('/entries', [EntriesApiController::class, 'store']);
         Route::put('/entries/{id}', [EntriesApiController::class, 'update']);
         Route::delete('/entries/{id}', [EntriesApiController::class, 'destroy']);
+        
+        Route::get('/fields', [FieldsApiController::class, 'index']);
+        Route::post('/fields', [FieldsApiController::class, 'store']);
+        Route::get('/fields/{field}', [FieldsApiController::class, 'show']);
+        Route::put('/fields/{field}', [FieldsApiController::class, 'update']);
+        Route::delete('/fields/{field}', [FieldsApiController::class, 'destroy']);
+        Route::get('/fields/types', [FieldsApiController::class, 'getFieldTypes']);
     });
 });
