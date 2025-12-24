@@ -53,14 +53,14 @@ class FieldGroupsController extends Controller
         return redirect()->route('dashboard.field-groups.index');
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy(int $id): RedirectResponse
     {
         // TODO: Реализовать удаление группы полей
 
         return redirect()->route('dashboard.field-groups.index');
     }
 
-    public function restore($id): RedirectResponse
+    public function restore(int $id): RedirectResponse
     {
         // TODO: Реализовать восстановление удаленной группы полей
 

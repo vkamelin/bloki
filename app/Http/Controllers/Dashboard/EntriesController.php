@@ -53,35 +53,35 @@ class EntriesController extends Controller
         return redirect()->route('dashboard.entries.index');
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy(int $id): RedirectResponse
     {
         // TODO: Реализовать удаление записи
 
         return redirect()->route('dashboard.entries.index');
     }
 
-    public function restore($id): RedirectResponse
+    public function restore(int $id): RedirectResponse
     {
         // TODO: Реализовать восстановление удаленной записи
 
         return redirect()->route('dashboard.entries.index');
     }
 
-    public function preview($id)
+    public function preview(int $id)
     {
         // TODO: Реализовать предварительный просмотр записи
 
         return view('dashboard.entries.preview', compact('id'));
     }
 
-    public function publish($id): RedirectResponse
+    public function publish(int $id): RedirectResponse
     {
         // TODO: Реализовать публикация записи
 
         return redirect()->route('dashboard.entries.index');
     }
 
-    public function unpublish($id): RedirectResponse
+    public function unpublish(int $id): RedirectResponse
     {
         // TODO: Реализовать снятие с публикации записи
 
