@@ -25,7 +25,7 @@ class FieldGroup extends Model
 
     public function fields(): HasMany
     {
-        return $this->hasMany(Fields::class, 'group_id');
+        return $this->hasMany(Field::class, 'group_id');
     }
 
     public function createdBy(): BelongsTo
@@ -50,7 +50,7 @@ class FieldGroup extends Model
 
     public function getFields(): \Illuminate\Support\Collection
     {
-        return $this->fields->get();
+        return $this->fields()->get();
     }
 
     public function isGlobal(): bool

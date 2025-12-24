@@ -25,7 +25,7 @@ class Revision extends Model
 
     public function entry(): BelongsTo
     {
-        return $this->belongsTo(Entry::class);
+        return $this->belongsTo(Entry::class, 'entity_id');
     }
 
     public function createdBy(): BelongsTo
