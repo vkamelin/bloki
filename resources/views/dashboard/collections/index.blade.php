@@ -4,7 +4,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Collections</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
-        <a href="{{ route('collections.create') }}" class="btn btn-sm btn-outline-secondary">Add Collection</a>
+        <a href="{{ route('dashboard.collections.create') }}" class="btn btn-sm btn-outline-secondary">Add Collection</a>
     </div>
 </div>
 
@@ -25,7 +25,7 @@
                 <td>Sample Collection</td>
                 <td>10</td>
                 <td>
-                    <a href="{{ route('collections.edit', 1) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a href="{{ route('dashboard.collections.edit', 1) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
                     <button class="btn btn-sm btn-outline-danger">Delete</button>
                 </td>
             </tr>

@@ -5,7 +5,7 @@
     <h1 class="h2">Collection Form</h1>
 </div>
 
-<form method="POST" action="{{ isset($id) ? route('collections.update', $id) : route('collections.store') }}">
+<form method="POST" action="{{ isset($id) ? route('dashboard.collections.update', $id) : route('dashboard.collections.store') }}">
     @csrf
     @if(isset($id))
         @method('PUT')
@@ -22,6 +22,6 @@
     </div>
     
     <button type="submit" class="btn btn-primary">Save</button>
-    <a href="{{ route('collections.index') }}" class="btn btn-secondary">Cancel</a>
+    <a href="{{ route('dashboard.collections.index') }}" class="btn btn-secondary">Cancel</a>
 </form>
 @endsection

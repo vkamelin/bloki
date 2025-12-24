@@ -18,6 +18,9 @@ Route::prefix('dashboard')->group(function () {
     // Dashboard routes
     Route::middleware(['auth:dashboard'])->group(function () {
         Route::get('/', [App\Http\Controllers\Dashboard\DashboardController::class, 'index'])->name('dashboard.index');
+        
+        // Include dashboard routes with proper prefix
+        require __DIR__.'/dashboard.php';
     });
 });
 

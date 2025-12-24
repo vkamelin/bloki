@@ -11,8 +11,8 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure $next
      * @param  string|null  ...$guards
      * @return mixed
      */
@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
                 if ($guard === 'dashboard') {
                     return redirect()->route('dashboard.index');
                 }
-                
+
                 return redirect('/');
             }
         }
