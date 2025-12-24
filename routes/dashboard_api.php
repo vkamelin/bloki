@@ -20,8 +20,11 @@ Route::middleware(['auth:dashboard'])->group(function () {
         
         Route::get('collections', [CollectionsApiController::class, 'index'])->name('dashboard.api.collections.index');
         Route::post('collections', [CollectionsApiController::class, 'store'])->name('dashboard.api.collections.store');
-        Route::put('collections/{id}', [CollectionsApiController::class, 'update'])->name('dashboard.api.collections.update');
-        Route::delete('collections/{id}', [CollectionsApiController::class, 'destroy'])->name('dashboard.api.collections.destroy');
+        Route::get('collections/{collection}', [CollectionsApiController::class, 'show'])->name('dashboard.api.collections.show');
+        Route::put('collections/{collection}', [CollectionsApiController::class, 'update'])->name('dashboard.api.collections.update');
+        Route::delete('collections/{collection}', [CollectionsApiController::class, 'destroy'])->name('dashboard.api.collections.destroy');
+        Route::post('collections/{id}/restore', [CollectionsApiController::class, 'restore'])->name('dashboard.api.collections.restore');
+        Route::post('collections/{id}/duplicate', [CollectionsApiController::class, 'duplicate'])->name('dashboard.api.collections.duplicate');
         
         Route::get('entries', [EntriesApiController::class, 'index'])->name('dashboard.api.entries.index');
         Route::post('entries', [EntriesApiController::class, 'store'])->name('dashboard.api.entries.store');
