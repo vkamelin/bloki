@@ -20,3 +20,8 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/', [App\Http\Controllers\Dashboard\DashboardController::class, 'index'])->name('dashboard.index');
     });
 });
+
+// Fallback login route
+Route::get('/login', function () {
+    return redirect()->route('dashboard.login');
+})->name('login');

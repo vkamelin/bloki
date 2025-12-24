@@ -16,6 +16,8 @@ class Permission extends Model
         'action',
     ];
 
+    public $timestamps = true;
+
     /**
      * Get the role that owns the permission.
      */

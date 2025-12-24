@@ -52,7 +52,7 @@ class Admin extends Authenticatable
      */
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class, 'admin_role');
+        return $this->belongsToMany(Role::class, 'admin_roles');
     }
 
     /**

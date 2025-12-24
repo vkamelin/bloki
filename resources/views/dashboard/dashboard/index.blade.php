@@ -9,39 +9,19 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Users</h5>
-                <p class="card-text">Manage system users</p>
-                <a href="{{ route('users.index') }}" class="btn btn-primary">View Users</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Articles</h5>
-                <p class="card-text">Manage articles</p>
-                <a href="{{ route('articles.index') }}" class="btn btn-primary">View Articles</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
                 <h5 class="card-title">Collections</h5>
                 <p class="card-text">Manage collections</p>
-                <a href="{{ route('collections.index') }}" class="btn btn-primary">View Collections</a>
+                <a href="{{ route('dashboard.collections.index') }}" class="btn btn-primary">View Collections</a>
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-4 mt-4">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Entries</h5>
                 <p class="card-text">Manage entries</p>
-                <a href="{{ route('entries.index') }}" class="btn btn-primary">View Entries</a>
+                <a href="{{ route('dashboard.entries.index') }}" class="btn btn-primary">View Entries</a>
             </div>
         </div>
     </div>

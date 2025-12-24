@@ -23,6 +23,17 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
+        $provider = Auth::guard('dashboard')->getProvider();
+        $user = $provider->retrieveByCredentials($credentials);
+
+        if (! $user) {
+            dd('Пользователь не найден');
+        }
+
+        if (! $provider->validateCredentials($user, $credentials)) {
+            dd('Неверный пароль');
+        }
+
         if (Auth::guard('dashboard')->attempt($credentials)) {
             $request->session()->regenerate();
 
