@@ -23,7 +23,7 @@ class MediaController extends Controller
     {
         // TODO: Реализовать отображение формы загрузки медиафайла
 
-        return view('dashboard.field-groups.form');
+        return view('dashboard.media.form');
     }
 
     public function store(MediaRequest $request): RedirectResponse
