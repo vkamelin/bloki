@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -67,7 +68,7 @@
     <div class="flex h-screen">
         <!-- Offcanvas Backdrop -->
         <div class="offcanvas-backdrop" id="offcanvasBackdrop" onclick="toggleOffcanvas()"></div>
-        
+
         <!-- Sidebar/Offcanvas -->
         <div class="offcanvas" id="sidebar">
             <div class="p-4 flex justify-between items-center border-b">
@@ -109,7 +110,7 @@
         function toggleOffcanvas() {
             const sidebar = document.getElementById('sidebar');
             const backdrop = document.getElementById('offcanvasBackdrop');
-            
+
             sidebar.classList.toggle('show');
             backdrop.style.display = sidebar.classList.contains('show') ? 'block' : 'none';
         }
