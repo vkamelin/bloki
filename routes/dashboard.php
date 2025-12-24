@@ -22,15 +22,17 @@ Route::middleware(['auth:dashboard'])->group(function () {
 
     // Collections management (admin and editor)
     Route::middleware(['role:admin,editor'])->group(function () {
-        Route::resource('collections', CollectionsController::class)->names([
-            'index' => 'dashboard.collections.index',
-            'create' => 'dashboard.collections.create',
-            'store' => 'dashboard.collections.store',
-            'show' => 'dashboard.collections.show',
-            'edit' => 'dashboard.collections.edit',
-            'update' => 'dashboard.collections.update',
-            'destroy' => 'dashboard.collections.destroy',
-        ]);
+        Route::get('collections', [CollectionsController::class, 'index'])->name('dashboard.collections.index');
+        Route::get('collections/create', [CollectionsController::class, 'create'])->name('dashboard.collections.create');
+        Route::post('collections', [CollectionsController::class, 'store'])->name('dashboard.collections.store');
+        Route::get('collections/{id}', [CollectionsController::class, 'show'])->name('dashboard.collections.show');
+        Route::get('collections/{id}/edit', [CollectionsController::class, 'edit'])->name('dashboard.collections.edit');
+        Route::put('collections/{id}', [CollectionsController::class, 'update'])->name('dashboard.collections.update');
+        Route::delete('collections/{id}', [CollectionsController::class, 'destroy'])->name('dashboard.collections.destroy');
+        Route::get('collections/import', [CollectionsController::class, 'import'])->name('dashboard.collections.import');
+        Route::post('collections/import', [CollectionsController::class, 'importFile'])->name('dashboard.collections.importFile');
+        Route::get('collections/export', [CollectionsController::class, 'export'])->name('dashboard.collections.export');
+        Route::post('collections/export', [CollectionsController::class, 'exportFile'])->name('dashboard.collections.exportFile');
     });
 
     // Entries management (admin, editor, and author)
