@@ -33,8 +33,38 @@ class EntriesController extends Controller
         return view('dashboard.entries.show');
     }
 
-    public function edit($id): Factory|ViewContract|View
+    public function edit(int $id): Factory|ViewContract|View
     {
         return view('dashboard.entries.form', compact('id'));
+    }
+
+    public function update(EntryRequest $request, int $id): RedirectResponse
+    {
+        return redirect()->route('dashboard.entries.index');
+    }
+
+    public function destroy($id): RedirectResponse
+    {
+        return redirect()->route('dashboard.entries.index');
+    }
+
+    public function restore($id): RedirectResponse
+    {
+        return redirect()->route('dashboard.entries.index');
+    }
+
+    public function preview($id)
+    {
+        return view('dashboard.entries.preview', compact('id'));
+    }
+
+    public function publish($id): RedirectResponse
+    {
+        return redirect()->route('dashboard.entries.index');
+    }
+
+    public function unpublish($id): RedirectResponse
+    {
+        return redirect()->route('dashboard.entries.index');
     }
 }
