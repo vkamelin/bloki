@@ -4,32 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        html, body {
-            height: 100%;
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Martian Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#1f2937',
+                        accent: '#3b82f6',
+                        text: '#f3f4f6',
+                    },
+                },
+                darkMode: 'media',
+            },
         }
-        
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f8f9fa;
-        }
-        
-        .form-signin {
-            width: 100%;
-            max-width: 400px;
-            padding: 15px;
-            margin: auto;
-        }
-    </style>
+    </script>
 </head>
-<body>
-    <main class="form-signin">
+<body class="bg-gray-100 font-sans h-screen flex items-center justify-center">
+    <main class="w-full max-w-md p-6 bg-white shadow-md rounded">
         @yield('content')
     </main>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
