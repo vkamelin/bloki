@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('collection_id')->nullable();
             $table->unsignedBigInteger('field_group_id')->nullable();
             $table->enum('action', ['read', 'write', 'delete']);
+            $table->timestamps();
 
             // Indexes
             $table->index('role_id');
