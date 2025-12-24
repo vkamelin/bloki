@@ -13,11 +13,6 @@ use App\Http\Controllers\Dashboard\MediaController;
 use App\Http\Controllers\Dashboard\RevisionsController;
 use App\Http\Controllers\Dashboard\AuthController;
 
-// Authentication routes (no auth middleware)
-Route::get('/login', [AuthController::class, 'index'])->name('dashboard.login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('dashboard.logout');
-
 Route::middleware(['auth:dashboard'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
