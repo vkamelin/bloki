@@ -73,4 +73,31 @@ class CollectionsController extends Controller
 
         return redirect()->route('dashboard.collections.index');
     }
+
+    public function forceDelete(int $id): RedirectResponse
+    {
+        // TODO: Реализовать полное удаление коллекции
+
+        return redirect()->route('dashboard.collections.index');
+    }
+
+    public function import(): Factory|ViewContract|View
+    {
+        return view('dashboard.collections.import');
+    }
+
+    public function importFile(): RedirectResponse
+    {
+        return redirect()->route('dashboard.collections.import');
+    }
+
+    public function export(): Factory|ViewContract|View
+    {
+        return view('dashboard.collections.export');
+    }
+
+    public function exportFile(): RedirectResponse
+    {
+        return redirect()->route('dashboard.collections.export');
+    }
 }
