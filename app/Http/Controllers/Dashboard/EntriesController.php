@@ -20,6 +20,8 @@ class EntriesController extends Controller
 
     public function create(): Factory|ViewContract|View
     {
+        // TODO: Реализовать
+
         return view('dashboard.entries.form');
     }
 

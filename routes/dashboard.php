@@ -33,14 +33,13 @@ Route::middleware(['auth:dashboard'])->group(function () {
         Route::post('collections/import', [CollectionsController::class, 'importFile'])->name('dashboard.collections.importFile');
         Route::get('collections/export', [CollectionsController::class, 'export'])->name('dashboard.collections.export');
         Route::post('collections/export', [CollectionsController::class, 'exportFile'])->name('dashboard.collections.exportFile');
-
-        Route::get('entries', [EntriesController::class, 'index'])->name('dashboard.entries.index');
-        Route::get('entries/create', [EntriesController::class, 'show'])->name('dashboard.entries.show');
-        Route::post('entries', [EntriesController::class, 'preview'])->name('dashboard.entries.preview');
     });
 
     // Entries management (admin, editor, and author)
     Route::middleware(['role:admin,editor,author'])->group(function () {
         Route::resource('entries', EntriesController::class);
+        Route::get('entries', [EntriesController::class, 'index'])->name('dashboard.entries.index');
+        Route::get('entries/create', [EntriesController::class, 'show'])->name('dashboard.entries.show');
+        Route::post('entries', [EntriesController::class, 'preview'])->name('dashboard.entries.preview');
     });
 });
