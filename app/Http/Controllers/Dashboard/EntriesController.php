@@ -20,53 +20,71 @@ class EntriesController extends Controller
 
     public function create(): Factory|ViewContract|View
     {
-        // TODO: Реализовать
+        // TODO: Реализовать отображение формы создания записи
 
         return view('dashboard.entries.form');
     }
 
     public function store(EntryRequest $request): RedirectResponse
     {
+        // TODO: Реализовать создание новой записи
+
         return redirect()->route('dashboard.entries.index');
     }
 
     public function show(int $id): Factory|ViewContract|View
     {
+        // TODO: Реализовать отображение деталей записи
+
         return view('dashboard.entries.show');
     }
 
     public function edit(int $id): Factory|ViewContract|View
     {
+        // TODO: Реализовать отображение формы редактирования записи
+
         return view('dashboard.entries.form', compact('id'));
     }
 
     public function update(EntryRequest $request, int $id): RedirectResponse
     {
+        // TODO: Реализовать обновление записи
+
         return redirect()->route('dashboard.entries.index');
     }
 
     public function destroy($id): RedirectResponse
     {
+        // TODO: Реализовать удаление записи
+
         return redirect()->route('dashboard.entries.index');
     }
 
     public function restore($id): RedirectResponse
     {
+        // TODO: Реализовать восстановление удаленной записи
+
         return redirect()->route('dashboard.entries.index');
     }
 
     public function preview($id)
     {
+        // TODO: Реализовать предварительный просмотр записи
+
         return view('dashboard.entries.preview', compact('id'));
     }
 
     public function publish($id): RedirectResponse
     {
+        // TODO: Реализовать публикация записи
+
         return redirect()->route('dashboard.entries.index');
     }
 
     public function unpublish($id): RedirectResponse
     {
+        // TODO: Реализовать снятие с публикации записи
+
         return redirect()->route('dashboard.entries.index');
     }
 }
