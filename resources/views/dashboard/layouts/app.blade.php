@@ -19,19 +19,10 @@
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dashboard.index') }}">Dashboard</a>
+                            <a class="nav-link" href="{{ route('dashboard.collections.index') }}">Collections</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('articles.index') }}">Articles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('collections.index') }}">Collections</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('entries.index') }}">Entries</a>
+                            <a class="nav-link" href="{{ route('dashboard.entries.index') }}">Entries</a>
                         </li>
                     </ul>
                 </div>
