@@ -31,9 +31,6 @@ class CollectionsApiController extends Controller
         return response()->json([], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(CollectionRequest $request, Collection $collection): JsonResponse
     {
         // TODO: Реализовать обновление коллекции

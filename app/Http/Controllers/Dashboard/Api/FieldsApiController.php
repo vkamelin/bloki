@@ -3,63 +3,53 @@
 namespace App\Http\Controllers\Dashboard\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\FieldResource;
+use App\Http\Requests\FieldRequest;
 use App\Models\Field;
-use App\Services\Dashboard\FieldConfiguration;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class FieldsApiController extends Controller
 {
-    protected $fieldConfig;
-    
-    public function __construct()
+
+    public function index(Request $request): JsonResponse
     {
-        $this->fieldConfig = new FieldConfiguration();
+        // TODO: Реализовать получение списка полей с пагинацией, сортировкой и фильтрацией
+
+        return response()->json([], 200);
     }
 
-    public function index()
+    public function store(FieldRequest $request): JsonResponse
     {
-        $this->authorize('viewAny', Field::class);
-        
-        return FieldResource::collection(Field::all());
+        // TODO: Реализовать создание нового поля
+
+        return response()->json([], 200);
     }
 
-    public function store(Request $request)
+    public function show(Field $field): JsonResponse
     {
-        $this->authorize('create', Field::class);
-        
-        $field = Field::create($request->all());
-        
-        return new FieldResource($field);
+        // TODO: Реализовать получение деталей поля
+
+        return response()->json([], 200);
     }
 
-    public function show(Field $field)
+    public function update(FieldRequest $request): JsonResponse
     {
-        $this->authorize('view', $field);
-        
-        return new FieldResource($field);
-    }
+        // TODO: Реализовать обновление поля
 
-    public function update(Request $request, Field $field)
-    {
-        $this->authorize('update', $field);
-        
-        $field->update($request->all());
-        
-        return new FieldResource($field);
+        return response()->json([], 200);
     }
 
     public function destroy(Field $field)
     {
-        $this->authorize('delete', $field);
-        
-        $field->delete();
-        
-        return response()->json();
+        // TODO: Реализовать удаление поля
+
+        return response()->json([], 200);
     }
-    
-    public function getFieldTypes()
+
+    public function restore(Field $field)
     {
-        return response()->json($this->fieldConfig->getFieldTypes());
+        // TODO: Реализовать восстановление удаленного поля
+
+        return response()->json([], 200);
     }
 }
