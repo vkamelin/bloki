@@ -1,54 +1,46 @@
 @extends('dashboard.layouts.auth')
 
 @section('content')
-<div class="card">
-    <div class="card-header text-center">{{ __('Dashboard Login') }}</div>
+<div class="max-w-md w-full space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold text-center text-gray-900">Admin Dashboard</h1>
+        <p class="mt-2 text-center text-sm text-gray-600">Sign in to your account</p>
+    </div>
+    <form class="mt-8 space-y-6" action="{{ route('dashboard.login') }}" method="POST">
+        @csrf
+        <div class="rounded-md shadow-sm -space-y-px">
+            <div>
+                <label for="email" class="sr-only">Email address</label>
+                <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="Email address">
+            </div>
+            <div>
+                <label for="password" class="sr-only">Password</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="Password">
+            </div>
+        </div>
 
-    <div class="card-body">
-        <form method="POST" action="{{ route('dashboard.login') }}">
-            @csrf
-
-            <div class="mb-3">
-                <label for="email" class="form-label">{{ __('Email Address') }}</label>
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                @error('email')
-                    <div class="invalid-feedback">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @enderror
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <input id="remember-me" name="remember" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                <label for="remember-me" class="ml-2 block text-sm text-gray-900"> Remember me </label>
             </div>
 
-            <div class="mb-3">
-                <label for="password" class="form-label">{{ __('Password') }}</label>
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                @error('password')
-                    <div class="invalid-feedback">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @enderror
+            <div class="text-sm">
+                <a href="{{ route('password.request') }}" class="font-medium text-blue-600 hover:text-blue-500"> Forgot your password? </a>
             </div>
+        </div>
 
-            <div class="mb-3 form-check">
-                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                <label class="form-check-label" for="remember">
-                    {{ __('Remember Me') }}
-                </label>
-            </div>
-
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
-            </div>
-
-            @if (Route::has('password.request'))
-                <div class="text-center mt-3">
-                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                        {{ __('Forgot Your Password?') }}
-                    </a>
-                </div>
-            @endif
-        </form>
+        <div>
+            <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Sign in
+            </button>
+        </div>
+    </form>
+    <div class="text-center">
+        <p class="text-sm text-gray-600">
+            Don't have an account? 
+            <a href="#" class="font-medium text-blue-600 hover:text-blue-500"> Contact administrator </a>
+        </p>
     </div>
 </div>
 @endsection
