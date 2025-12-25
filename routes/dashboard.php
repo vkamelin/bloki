@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Dashboard\UsersController;
+use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\ArticlesController;
 use App\Http\Controllers\Dashboard\CollectionsController;
 use App\Http\Controllers\Dashboard\EntriesController;
@@ -18,13 +18,13 @@ Route::middleware(['auth:dashboard'])->group(function () {
 
     // Users management (admin only)
     Route::middleware(['role:admin'])->group(function () {
-        Route::get('users', [UsersController::class, 'index'])->name('dashboard.users.index');
-        Route::get('users/create', [UsersController::class, 'create'])->name('dashboard.users.create');
-        Route::post('users', [UsersController::class, 'store'])->name('dashboard.users.store');
-        Route::get('users/{user}', [UsersController::class, 'show'])->name('dashboard.users.show');
-        Route::get('users/{user}/edit', [UsersController::class, 'edit'])->name('dashboard.users.edit');
-        Route::put('users/{user}', [UsersController::class, 'update'])->name('dashboard.users.update');
-        Route::delete('users/{user}', [UsersController::class, 'destroy'])->name('dashboard.users.destroy');
+        Route::get('users', [AdminController::class, 'index'])->name('dashboard.users.index');
+        Route::get('users/create', [AdminController::class, 'create'])->name('dashboard.users.create');
+        Route::post('users', [AdminController::class, 'store'])->name('dashboard.users.store');
+        Route::get('users/{user}', [AdminController::class, 'show'])->name('dashboard.users.show');
+        Route::get('users/{user}/edit', [AdminController::class, 'edit'])->name('dashboard.users.edit');
+        Route::put('users/{user}', [AdminController::class, 'update'])->name('dashboard.users.update');
+        Route::delete('users/{user}', [AdminController::class, 'destroy'])->name('dashboard.users.destroy');
     });
 
     // Collections management (admin and editor)
