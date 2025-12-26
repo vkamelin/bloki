@@ -10,11 +10,11 @@ interface RevisionRepositoryInterface
 {
     public function create(array $data): ?Revision;
 
-    public function update(int $id, array $data): ?Revision;
+    public function update(Revision|int $revision, array $data): ?Revision;
 
     public function getAll(array $filters = []): array;
 
-    public function getById(int $id): ?Revision;
+    public function getById(Revision|int $revision): ?Revision;
 
     public function getByEntry(Entry|int $entry): Revision;
 

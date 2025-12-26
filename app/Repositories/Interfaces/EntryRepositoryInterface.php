@@ -9,15 +9,15 @@ interface EntryRepositoryInterface
 {
     public function create(array $data): ?Entry;
 
-    public function update(int $id, array $data): ?Entry;
+    public function update(Entry|int $entry, array $data): ?Entry;
 
-    public function delete(int $id): bool;
+    public function delete(Entry|int $entry): bool;
 
-    public function restore(int $id): ?Entry;
+    public function restore(Entry|int $entry): ?Entry;
 
     public function getAll(array $filters = []): array;
 
-    public function getById(int $id): ?Entry;
+    public function getById(Entry|int $entry): ?Entry;
 
     public function getBySlug(string $slug): ?Entry;
 

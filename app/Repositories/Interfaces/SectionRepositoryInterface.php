@@ -9,15 +9,15 @@ interface SectionRepositoryInterface
 {
     public function create(array $data): ?Section;
 
-    public function update(int $id, array $data): ?Section;
+    public function update(Section|int $section, array $data): ?Section;
 
-    public function delete(int $id): bool;
+    public function delete(Section|int $section): bool;
 
-    public function restore(int $id): ?Section;
+    public function restore(Section|int $section): ?Section;
 
     public function getAll(array $filters = []): array;
 
-    public function getById(int $id): ?Section;
+    public function getById(Section|int $section): ?Section;
 
     public function getBySlug(string $slug): ?Section;
 

@@ -9,15 +9,15 @@ interface MediaRepositoryInterface
 {
     public function create(array $data): ?Media;
 
-    public function update(int $id, array $data): ?Media;
+    public function update(Media|int $media, array $data): ?Media;
 
-    public function delete(int $id): bool;
+    public function delete(Media|int $media): bool;
 
-    public function restore(int $id): ?Media;
+    public function restore(Media|int $media): ?Media;
 
     public function getAll(array $filters = []): array;
 
-    public function getById(int $id): ?Media;
+    public function getById(Media|int $media): ?Media;
 
     public function getByUuid(string $uuid): ?Media;
 

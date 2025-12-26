@@ -9,15 +9,15 @@ interface CollectionRepositoryInterface
 {
     public function create(array $data): ?Collection;
 
-    public function update(int $id, array $data): ?Collection;
+    public function update(Collection|int $collection, array $data): ?Collection;
 
-    public function delete(int $id): bool;
+    public function delete(Collection|int $collection): bool;
 
-    public function restore(int $id): ?Collection;
+    public function restore(Collection|int $collection): ?Collection;
 
     public function getAll(array $filters = []): array;
 
-    public function getById(int $id): ?Collection;
+    public function getById(Collection|int $collection): ?Collection;
 
     public function getBySlug(string $slug): ?Collection;
 
@@ -27,7 +27,7 @@ interface CollectionRepositoryInterface
 
     public function with(array $relations): array;
 
-    public function duplicate(int $id): ?Collection;
+    public function duplicate(Collection|int $collection): ?Collection;
 
     public function getSingleton(string $handle): ?Collection;
 

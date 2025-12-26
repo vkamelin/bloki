@@ -9,15 +9,15 @@ interface FieldRepositoryInterface
 {
     public function create(array $data): ?Field;
 
-    public function update(int $id, array $data): ?Field;
+    public function update(Field|int $field, array $data): ?Field;
 
-    public function delete(int $id): bool;
+    public function delete(Field|int $field): bool;
 
-    public function restore(int $id): ?Field;
+    public function restore(Field|int $field): ?Field;
 
     public function getAll(array $filters = []): array;
 
-    public function getById(int $id): ?Field;
+    public function getById(Field|int $field): ?Field;
 
     public function getByUuid(string $uuid): ?Field;
 

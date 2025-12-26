@@ -9,15 +9,15 @@ interface FieldGroupRepositoryInterface
 {
     public function create(array $data): ?FieldGroup;
 
-    public function update(int $id, array $data): ?FieldGroup;
+    public function update(FieldGroup|int $fieldGroup, array $data): ?FieldGroup;
 
-    public function delete(int $id): bool;
+    public function delete(FieldGroup|int $fieldGroup): bool;
 
-    public function restore(int $id): ?FieldGroup;
+    public function restore(FieldGroup|int $fieldGroup): ?FieldGroup;
 
     public function getAll(array $filters = []): array;
 
-    public function getById(int $id): ?FieldGroup;
+    public function getById(FieldGroup|int $fieldGroup): ?FieldGroup;
 
     public function getByUuid(string $uuid): ?FieldGroup;
 
