@@ -27,4 +27,14 @@ class MediaRequest extends FormRequest
     {
         return true;
     }
+
+    public function attributes(): array
+    {
+        return [];
+    }
+
+    public function messages(): array
+    {
+        return [];
+    }
 }
