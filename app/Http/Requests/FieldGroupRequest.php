@@ -8,15 +8,14 @@ class FieldGroupRequest extends FormRequest
 {
     public function rules(): array
     {
+        $fieldGroupId = $this->fieldGroup?->id;
+
         return [
-            'uuid' => ['required'],
-            'name' => ['required'],
-            'description' => ['nullable'],
+            'name' => ['required', 'string', 'max:100'],
+            'description' => ['nullable', 'string', 'max:255'],
             'is_global' => ['boolean'],
-            'rules' => ['nullable'],
+            'rules' => ['nullable', 'array'],
             'is_active' => ['boolean'],
-            'created_by' => ['required', 'exists:admins'],
-            'updated_by' => ['required', 'exists:admins'],
         ];
     }
 
@@ -27,11 +26,22 @@ class FieldGroupRequest extends FormRequest
 
     public function attributes(): array
     {
-        return [];
+        return [
+            'name' => 'Название',
+            'description' => 'Описание',
+            'is_global' => 'Глобальная группа',
+            'rules' => 'Правила',
+            'is_active' => 'Активна',
+        ];
     }
 
     public function messages(): array
     {
-        return [];
+        return [
+            'name.required' => 'Поле ":attribute" обязательно для заполнения.',
+            'name.max' => 'Поле ":attribute" не может превышать :max символов.',
+            'description.max' => 'Поле ":attribute" не может превышать :max символов.',
+            'rules.array' => 'Поле ":attribute" должно быть массивом.',
+        ];
     }
 }
