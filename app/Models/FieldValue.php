@@ -121,7 +121,7 @@ class FieldValue extends Model
         }
     }
     
-    protected function isDate(mixed $value): bool
+    public function isDate(mixed $value): bool
     {
         if (!is_string($value)) {
             return false;
@@ -131,7 +131,7 @@ class FieldValue extends Model
         return $date['error_count'] === 0 && $date['warning_count'] === 0 && strlen($value) <= 10;
     }
     
-    protected function isDateTime(mixed $value): bool
+    public function isDateTime(mixed $value): bool
     {
         if (!is_string($value)) {
             return false;

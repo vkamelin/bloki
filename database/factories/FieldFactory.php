@@ -30,7 +30,9 @@ class FieldFactory extends Factory
         $randomType = $this->faker->randomElement($fieldTypes);
         
         return [
+            'group_id' => FieldGroup::factory(),
             'uuid' => $this->faker->uuid(),
+            'slug' => $this->faker->slug(),
             'name' => $this->faker->name(),
             'description' => $this->faker->word(),
             'instructions' => $this->faker->word(),
@@ -42,10 +44,6 @@ class FieldFactory extends Factory
             'translatable' => $this->getFieldConfig()->isTranslatable($randomType),
             'searchable' => $this->getFieldConfig()->isSearchable($randomType),
             'is_active' => $this->faker->boolean(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-
-            'group_id' => FieldGroup::factory(),
             'created_by' => Admin::factory(),
             'updated_by' => Admin::factory(),
         ];
