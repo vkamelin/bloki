@@ -14,6 +14,7 @@ class FieldResource extends JsonResource
         return [
             'id' => $this->id,
             'uuid' => $this->uuid,
+            'slug' => $this->slug,
             'name' => $this->name,
             'description' => $this->description,
             'instructions' => $this->instructions,

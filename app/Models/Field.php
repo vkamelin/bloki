@@ -15,6 +15,7 @@ class Field extends Model
     protected $fillable = [
         'group_id',
         'uuid',
+        'slug',
         'name',
         'description',
         'instructions',
@@ -95,7 +96,7 @@ class Field extends Model
         if (isset($this->attributes['translatable'])) {
             return (bool)$this->attributes['translatable'];
         }
-        
+
         // Otherwise, use the field type configuration
         return $this->getFieldConfig()->isTranslatable($this->attributes['type']);
     }
@@ -106,7 +107,7 @@ class Field extends Model
         if (isset($this->attributes['searchable'])) {
             return (bool)$this->attributes['searchable'];
         }
-        
+
         // Otherwise, use the field type configuration
         return $this->getFieldConfig()->isSearchable($this->attributes['type']);
     }
