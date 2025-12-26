@@ -12,6 +12,7 @@ class CollectionResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'type' => 'collection',
             'id' => $this->id,
             'uuid' => $this->uuid,
             'name' => $this->name,
@@ -36,6 +37,30 @@ class CollectionResource extends JsonResource
 
             'createdBy' => new AdminResource($this->whenLoaded('createdBy')),
             'updatedBy' => new AdminResource($this->whenLoaded('updatedBy')),
+        ];
+    }
+
+    public function with(Request $request): array
+    {
+        return [
+            'meta' => [
+                'permissions' => [
+                    'view' => $request->user()?->can('view', $this->resource),
+                    'update' => $request->user()?->can('update', $this->resource),
+                    'delete' => $request->user()?->can('delete', $this->resource),
+                ]
+            ]
+        ];
+    }
+
+    public function additional(array $data = []): array
+    {
+        return [
+            'links' => [
+                'self' => route('api.collections.show', $this->resource),
+                'entries' => route('api.entries.index', ['collection' => $this->resource]),
+                'sections' => route('api.sections.index', ['collection' => $this->resource])
+            ]
         ];
     }
 }

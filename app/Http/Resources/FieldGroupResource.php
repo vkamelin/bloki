@@ -12,6 +12,7 @@ class FieldGroupResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'type' => 'field-group',
             'id' => $this->id,
             'uuid' => $this->uuid,
             'name' => $this->name,
@@ -27,6 +28,29 @@ class FieldGroupResource extends JsonResource
 
             'createdBy' => new AdminResource($this->whenLoaded('createdBy')),
             'updatedBy' => new AdminResource($this->whenLoaded('updatedBy')),
+        ];
+    }
+
+    public function with(Request $request): array
+    {
+        return [
+            'meta' => [
+                'permissions' => [
+                    'view' => $request->user()?->can('view', $this->resource),
+                    'update' => $request->user()?->can('update', $this->resource),
+                    'delete' => $request->user()?->can('delete', $this->resource),
+                ]
+            ]
+        ];
+    }
+
+    public function additional(array $data = []): array
+    {
+        return [
+            'links' => [
+                'self' => route('api.field-groups.show', $this->resource),
+                'fields' => route('api.fields.index', ['group' => $this->resource])
+            ]
         ];
     }
 }

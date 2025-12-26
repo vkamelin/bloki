@@ -39,4 +39,28 @@ class FieldResource extends JsonResource
             'updatedBy' => new AdminResource($this->whenLoaded('updatedBy')),
         ];
     }
+
+    public function with(Request $request): array
+    {
+        return [
+            'meta' => [
+                'permissions' => [
+                    'view' => $request->user()?->can('view', $this->resource),
+                    'update' => $request->user()?->can('update', $this->resource),
+                    'delete' => $request->user()?->can('delete', $this->resource),
+                ]
+            ]
+        ];
+    }
+
+    public function additional(array $data = []): array
+    {
+        return [
+            'links' => [
+                'self' => route('api.fields.show', $this->resource),
+                'group' => $this->group_id ? route('api.field-groups.show', $this->group_id) : null,
+                'entries' => route('api.entries.index', ['field' => $this->resource])
+            ]
+        ];
+    }
 }

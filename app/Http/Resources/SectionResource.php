@@ -12,6 +12,7 @@ class SectionResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'type' => 'section',
             'id' => $this->id,
             'uuid' => $this->uuid,
             'lft' => $this->lft,
@@ -35,6 +36,30 @@ class SectionResource extends JsonResource
             'parent' => new SectionResource($this->whenLoaded('parent')),
             'createdBy' => new AdminResource($this->whenLoaded('createdBy')),
             'updatedBy' => new AdminResource($this->whenLoaded('updatedBy')),
+        ];
+    }
+
+    public function with(Request $request): array
+    {
+        return [
+            'meta' => [
+                'permissions' => [
+                    'view' => $request->user()?->can('view', $this->resource),
+                    'update' => $request->user()?->can('update', $this->resource),
+                    'delete' => $request->user()?->can('delete', $this->resource),
+                ]
+            ]
+        ];
+    }
+
+    public function additional(array $data = []): array
+    {
+        return [
+            'links' => [
+                'self' => route('api.sections.show', $this->resource),
+                'entries' => route('api.entries.index', ['section' => $this->resource]),
+                'children' => route('api.sections.index', ['parent' => $this->resource])
+            ]
         ];
     }
 }
